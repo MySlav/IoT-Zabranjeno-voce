@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block body %} 
+
+
+<div class="container">
+    <a href="/" class="btn btn-info btn-lg">Fruits</a>
+	<a href="/observations" class="btn btn-info btn-lg ">Observations</a>
+  </div>
+</div>
+<div class="container">
+<p></p>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col md-12">
+			<div class="jumbotron p-3">
+				<h2>Manage <b>Discounts </b>  <button type="button"  class="btn btn-success float-right"
+                data-toggle="modal" data-target="#mymodal">Add New Discount</button> </h2>
+				
+				{% with messages = get_flashed_messages() %}
+				
+				{% if messages %}
+				
+				{% for message in messages %}
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="close">
+					
+					<span aria-hidden="true">x</span>
+					</button>
+				{{message}}
+				</div>
+				{% endfor %}
+				{% endif %}
+				
+				{% endwith %}
+				<table class="table table-hover table-dark">
+					
+					<tr>
+						<th>ID</th>
+						<th>ID of Fruit</th>
+						<th>Class Name</th>
+						<th>Class</th>
+						<th>Discount</th>
+						<th>Action</th>
+					
+					</tr>
+					{% for row in popusti %}
+					<tr>
+						<td>{{row.ID}}</td>
+						<td>{{row.ID_voce}}</td>
+						<td>{{row.Ime_Klase}}</td>
+						<td>{{row.Klasa}}</td>
+						<td>{{row.Popust}}</td>
+						<td>
+							<a href="/discount/update/{{row.ID}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.ID}}">Edit</a>
+							<a href="/discount/delete/{{row.ID}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure You Want To Delete ?')">Delete</a>
+
+						</td>
+					
+					</tr>
+					<!-- Modal Edit Employee-->
+<div id="modaledit{{row.ID}}" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+
+
+      <div class="modal-content">
+
+
+         <div class="modal-header">
+
+
+            <h4 class="modal-title">Update Information</h4>
+
+
+         </div>
+
+
+         <div class="modal-body">
+
+
+            <form  enctype="multipart/form-data" action="{{url_for('update_disc')}}" method="POST">
+
+
+               <div class="form-group">
+
+
+                  <label>ID of Fruit:</label>
+                   <input type="hidden"  name="ID" value="{{row.ID}}">
+
+                  <input type="text" min="1" step="1" class="form-control" name="ID_voce" value="{{row.ID_voce}}">
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <label>Class Name:</label>
+                  <input type="text" class="form-control" name="Ime_Klase" value="{{row.Ime_Klase}}">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Class:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="Klasa" value="{{row.Klasa}}">
+
+
+
+               </div>
+			   
+			  
+			   
+			   <div class="form-group">
+
+
+                  <label>Discount:</label>
+                  <input type="number" min="0" class="form-control" step="0.01" name="Popust" value="{{row.Popust}}">
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="submit">Update</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+</div>
+{% endfor %}
+
+					</table>
+						
+			
+			</div>
+		
+<div id="mymodal" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+
+            <h4 class="modal-title">Add Discount</h4>
+         </div>
+         <div class="modal-body">
+
+            <form action="{{url_for('add_popust')}}" method="POST">
+
+
+               <div class="form-group">
+
+                  <label>ID of Fruit:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="ID_voce" required="1">
+
+
+               </div>
+				<div class="form-group">
+
+                  <label>Class Name:</label>
+                  <input type="text" class="form-control" name="Ime_Klase" required="1">
+
+
+               </div>
+
+                
+
+
+                <div class="form-group">
+
+
+                  <label>Class:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="Klasa" required="1">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Discount:</label>
+                  <input type="number" min="0" class="form-control" step="0.01" name="Popust" required="1">
+
+
+               </div>
+			   
+			
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="submit">Add Discount</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+
+</div>
+		
+		
+		</div>
+	
+	
+	
+	
+	</div>
+</div>
+
+
+
+
+{% endblock %}

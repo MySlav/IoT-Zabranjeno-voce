@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block body %} 
+
+
+
+<div class="container">
+    <a href="/" class="btn btn-info btn-lg">Fruits</a>
+	<a href="/discounts" class="btn btn-info btn-lg ">Discounts</a>
+  </div>
+</div>
+<div class="container">
+<p></p>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col md-12">
+			<div class="jumbotron p-3">
+				<h2>Manage <b>Observations </b>  <button type="button"  class="btn btn-success float-right"
+                data-toggle="modal" data-target="#mymodal">Add New Observation</button> </h2>
+				
+				{% with messages = get_flashed_messages() %}
+				
+				{% if messages %}
+				
+				{% for message in messages %}
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="close">
+					
+					<span aria-hidden="true">x</span>
+					</button>
+				{{message}}
+				</div>
+				{% endfor %}
+				{% endif %}
+				
+				{% endwith %}
+				<table class="table table-hover table-dark">
+					
+					<tr>
+						<th>ID</th>
+						<th>ID_fruit</th>
+						<th>Image</th>
+						<th>Class - Model</th>
+						<th>Time</th>
+					
+					</tr>
+					{% for row in opazaji %}
+					<tr>
+						<td>{{row.ID}}</td>
+						<td>{{row.ID_voca}}</td>
+						<td><img src="data:image/jpeg;base64,{{row.slikaPI}}"></td>
+						<td>{{row.KlasaModel}}</td>
+						<td>{{row.Vrijeme}}</td>
+						<td>
+							<a href="/observation/update/{{row.ID}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.ID}}">Edit</a>
+							<a href="/observation/delete/{{row.ID}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure You Want To Delete ?')">Delete</a>
+
+						</td>
+					
+					</tr>
+					<!-- Modal Edit Employee-->
+<div id="modaledit{{row.ID}}" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+
+
+      <div class="modal-content">
+
+
+         <div class="modal-header">
+
+
+            <h4 class="modal-title">Update Information</h4>
+
+
+         </div>
+
+
+         <div class="modal-body">
+
+
+            <form  enctype="multipart/form-data" action="{{url_for('update_obs')}}" method="POST">
+
+
+               <div class="form-group">
+
+
+                  <label>ID of Fruit:</label>
+                   <input type="hidden"  name="ID" value="{{row.ID}}">
+
+                  <input type="number" min="1" step="1" class="form-control" name="ID_voca" value="{{row.ID_voca}}">
+
+
+               </div>
+
+
+
+               <div class="form-group">
+
+
+                  <label>Picture:</label>
+
+                  <input type="file" class="form-control" name="slikaPI" value="{{row.slikaPI}}">
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <label>Class - Model:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="KlasaModel" value="{{row.KlasaModel}}">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Time:</label>
+                  <input type="datetime-local" class="form-control" name="Vrijeme" value="{{row.Vrijeme}}">
+
+
+
+               </div>
+			   
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="submit">Update</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+</div>
+{% endfor %}
+
+					</table>
+						
+			
+			</div>
+		
+<div id="mymodal" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+
+            <h4 class="modal-title">Add Observation</h4>
+         </div>
+         <div class="modal-body">
+
+            <form enctype="multipart/form-data" action="{{url_for('add_opazaj')}}" method="POST">
+
+
+               <div class="form-group">
+
+                  <label>ID of Fruit:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="ID_voca" required="1">
+
+
+               </div>
+				<div class="form-group">
+
+                  <label>Picture:</label>
+                  <input type="file" class="form-control" name="slikaPI" required="1">
+
+
+               </div>
+
+                
+
+
+                <div class="form-group">
+
+
+                  <label>Class - Model:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="KlasaModel" required="1">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Time:</label>
+                  <input type="datetime-local" class="form-control" name="Vrijeme" required="1">
+
+
+               </div>
+			   
+
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="submit">Add Fruit</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+
+</div>
+		
+		
+		</div>
+	
+	
+	
+	
+	</div>
+</div>
+
+
+
+
+{% endblock %}

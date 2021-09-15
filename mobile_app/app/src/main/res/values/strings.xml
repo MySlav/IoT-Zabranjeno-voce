@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BeaconManager</string>
+
+    <string-array name="beacons">
+        <item>Beacons 1</item>
+        <item>Beacons 2</item>
+    </string-array>
+
+    <string-array name="details">
+        <item>Beacons 1 - Details</item>
+        <item>Beacons 2 - Details</item>
+    </string-array>
+</resources>

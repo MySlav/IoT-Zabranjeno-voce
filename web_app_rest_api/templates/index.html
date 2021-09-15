@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block body %} 
+
+<style>
+.parent {
+  width: 100px;
+}
+
+img {
+  display: block;
+  width: 50%;
+  height: auto;
+}
+
+
+</style>
+
+
+<div class="container">
+    <a href="/discounts" class="btn btn-info btn-lg">Discounts</a>
+	<a href="/observations" class="btn btn-info btn-lg ">Observations</a>
+  </div>
+</div>
+<div class="container">
+<p></p>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col md-12">
+			<div class="jumbotron p-3">
+				<h2>Manage <b>Fruits </b>  <button type="button"  class="btn btn-success float-right"
+                data-toggle="modal" data-target="#mymodal">Add New Fruit</button> </h2>
+				
+				{% with messages = get_flashed_messages() %}
+				
+				{% if messages %}
+				
+				{% for message in messages %}
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="close">
+					
+					<span aria-hidden="true">x</span>
+					</button>
+				{{message}}
+				</div>
+				{% endfor %}
+				{% endif %}
+				
+				{% endwith %}
+				<table class="table table-hover table-dark">
+					
+					<tr>
+						<th>ID</th>
+						<th>Ime</th>
+						<th>Picture</th>
+						<th>Beacon UUID</th>
+						<th>Beacon Major</th>
+						<th>Beacon Minor</th>
+						<th>Basic Price</th>
+						<th>Current Class</th>
+						<th>Action</th>
+					
+					</tr>
+					{% for row in voca %}
+					<tr>
+						<td>{{row.ID}}</td>
+						<td>{{row.Ime}}</td>
+						<td><img src="data:image/jpeg;base64,{{row.slika}}"></td>
+						<td style="width:320px">{{row.BeaconUUID}}</td>
+						<td>{{row.BeaconMajor}}</td>
+						<td>{{row.BeaconMinor}}</td>
+						<td>{{row.OsnovnaCijena}}</td>
+						<td>{{row.TrenutnaKlasa}}</td>
+						<td>
+							<a href="/voce/update/{{row.ID}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.ID}}">Edit</a>
+							<a href="/voce/delete/{{row.ID}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure You Want To Delete ?')">Delete</a>
+
+						</td>
+					
+					</tr>
+					<!-- Modal Edit Employee-->
+<div id="modaledit{{row.ID}}" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+
+
+      <div class="modal-content">
+
+
+         <div class="modal-header">
+
+
+            <h4 class="modal-title">Update Information</h4>
+
+
+         </div>
+
+
+         <div class="modal-body">
+
+
+            <form  enctype="multipart/form-data" action="{{url_for('update')}}" method="POST">
+
+
+               <div class="form-group">
+
+
+                  <label>Name:</label>
+                   <input type="hidden"  name="ID" value="{{row.ID}}">
+
+                  <input type="text" class="form-control" name="Ime" value="{{row.Ime}}">
+
+
+               </div>
+
+
+
+               <div class="form-group">
+
+
+                  <label>Picture:</label>
+
+                  <input type="file" class="form-control" name="slika" value="{{row.slika}}">
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <label>Beacon UUID:</label>
+                  <input type="text" class="form-control" name="BeaconUUID" value="{{row.BeaconUUID}}">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Beacon Major:</label>
+                  <input type="number" min="0" step="1" class="form-control" name="BeaconMajor" value="{{row.BeaconMajor}}">
+
+
+
+               </div>
+			   
+			  
+			   
+			   <div class="form-group">
+
+
+                  <label>Beacon Minor:</label>
+                  <input type="number" min="0" step="1" class="form-control" name="BeaconMinor" value="{{row.BeaconMinor}}">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Basic Price:</label>
+                  <input type="number" min="0" step="0.01" class="form-control" name="OsnovnaCijena" value="{{row.OsnovnaCijena}}">
+
+
+               </div>
+			   <div class="form-group">
+
+
+                  <label>Current Class:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="TrenutnaKlasa" value="{{row.TrenutnaKlasa}}">
+
+
+               </div>
+
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="submit">Update</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+</div>
+{% endfor %}
+
+					</table>
+						
+			
+			</div>
+		
+<div id="mymodal" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+
+            <h4 class="modal-title">Add Fruit</h4>
+         </div>
+         <div class="modal-body">
+
+            <form enctype="multipart/form-data" action="{{url_for('add_voce')}}" method="POST">
+
+
+               <div class="form-group">
+
+                  <label>Name:</label>
+                  <input type="text" class="form-control" name="Ime" required="1">
+
+
+               </div>
+				<div class="form-group">
+
+                  <label>Picture:</label>
+                  <input type="file" class="form-control" name="slika" required="1">
+
+
+               </div>
+
+                
+
+
+                <div class="form-group">
+
+
+                  <label>Beacon UUID:</label>
+                  <input type="text" class="form-control" name="BeaconUUID" required="1">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Beacon Major:</label>
+                  <input type="number" min="0" step="1" class="form-control" name="BeaconMajor" required="1">
+
+
+               </div>
+			   
+			   
+			   
+			   <div class="form-group">
+
+
+                  <label>Beacon Minor:</label>
+                  <input type="number" min="0" step="1" class="form-control" name="BeaconMinor" required="1">
+
+
+               </div>
+			   
+			   <div class="form-group">
+
+
+                  <label>Basic Price:</label>
+                  <input type="number" min="0" step="0.01" class="form-control" name="OsnovnaCijena" required="1">
+
+
+               </div>
+			   <div class="form-group">
+
+
+                  <label>Current Class:</label>
+                  <input type="number" min="1" step="1" class="form-control" name="TrenutnaKlasa" required="1">
+
+
+               </div>
+
+
+
+               <div class="form-group">
+
+
+                  <button class="btn btn-primary" type="submit">Add Fruit</button>
+
+
+               </div>
+
+
+            </form>
+
+
+         </div>
+
+
+         <div class="modal-footer">
+
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+         </div>
+
+
+      </div>
+
+
+   </div>
+
+
+</div>
+		
+		
+		</div>
+	
+	
+	
+	
+	</div>
+</div>
+
+
+
+
+{% endblock %}
