@@ -29,7 +29,7 @@ app.secret_key = "Secret Key"
 
 os.makedirs(os.path.join(app.instance_path, 'htmlfi'), exist_ok=True)
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://mislav1:MojPass123456@iot-2021-mislavspajic-server.database.windows.net/iot-2021-mislavspajic-db?driver=ODBC+Driver+17+for+SQL+Server"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://username:password@server/database_name?driver=ODBC+Driver+17+for+SQL+Server"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
