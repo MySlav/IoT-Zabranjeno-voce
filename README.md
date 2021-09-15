@@ -91,8 +91,8 @@ How to setup every component.
   ```sh
   pip install -r /web_app_rest_api/requirements.txt
   ```
-  * Web app & Rest API
-     *run /db/create.sql to create needed tables in SQL server
+* DB
+     * run /db/create.sql to create needed tables in SQL server
 
 Note - You need to open port 5000 on your VM where the web app and Rest API are deployed.
 <!-- USAGE EXAMPLES -->
