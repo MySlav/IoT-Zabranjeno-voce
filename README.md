@@ -121,4 +121,4 @@ Nenad Durak - durak.nenad@racunarstvo.hr
 
 Hrvoje Kopic - hrvoje.kopic@racunarstvo.hr
 
-Project Link: [https://github.com/MySlav/IoT-Zabranjeno-voce)
+Project Link: [https://github.com/MySlav/IoT-Zabranjeno-voce]
