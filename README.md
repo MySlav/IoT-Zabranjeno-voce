@@ -114,8 +114,11 @@ How to start components.
 ## Contact
 
 Mislav Spajic - mislav.spajic@racunarstvo.hr
+
 Karlo Hren - karlo.hren@racunarstvo.hr
+
 Nenad Durak - durak.nenad@racunarstvo.hr
+
 Hrvoje Kopic - hrvoje.kopic@racunarstvo.hr
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/MySlav/IoT-Zabranjeno-voce)
