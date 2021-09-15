@@ -100,12 +100,12 @@ Note - You need to open port 5000 on your VM where the web app and Rest API are 
 
 How to start components.
 
-
 * Raspberry PI - only needed if you are not on raspbian distro
   ```sh
   python3 /raspi/PiCamera.py
   ```
- * Web app & Rest API
+  
+* Web app & Rest API
   ```sh
   python /web_app_rest_api/app.py
   ```
@@ -121,4 +121,4 @@ Nenad Durak - durak.nenad@racunarstvo.hr
 
 Hrvoje Kopic - hrvoje.kopic@racunarstvo.hr
 
-Project Link: [https://github.com/MySlav/IoT-Zabranjeno-voce]
+Project Link: https://github.com/MySlav/IoT-Zabranjeno-voce
