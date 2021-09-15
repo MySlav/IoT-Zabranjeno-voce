@@ -41,18 +41,25 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![project-schema][https://i.ibb.co/yq5KQ0m/shema-Projekta.jpg]]
+![project-schema](https://i.ibb.co/yq5KQ0m/shema-Projekta.jpg])
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+In some stores, the price of an item depends on its expiry date. For example, if milk’s best before date expires tomorrow, some stores will be selling it at discounted price. The same goes for fruit. 
+Because fruit does not have expiry date, stores usually rely on visual judgment on fruit condition; if bananas have many brown spots, it is likely they are nearing the end of their sellable cycle so they are discounted manually by store personnel. 
+In this project, we will be creating a platform for applying automated discounts based on the current state of the bananas (the same principle can be applied to any type of fruit).
+We will be employing a Raspberry Pi camera to take regular photos of bananas on the store shelf. 
+By utilizing deep learning model, our system will judge the remaining time until bananas cannot longer be sold. 
+Based on remaining expected life of bananas and defined rules, the system will automatically lower the banana prices in the accounting software and will advertise discounts to all neighboring mobile phones that have our mobile application installed by using BLE beacons.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+The system will have the following components:
+*	BLE beacon.
+*	Shopper mobile application will scan for nearby BLE beacon and display discount information if web app says so.
+*	Web application will:
+    *	Enable administrators to manage fruit products. Each product will have at least a name, image and price. 
+    *	Enable administrators to manage discounts for fruit. For example, administrator can define that bananas will be discounted 40% when their class becomes yellow flecked with brown .
+    *	Return discount info for BLE beacon.
+    *	Enable viewing of all taken photos and their classifications.
+*	Raspberry Pi with camera will take an image of a (single) banana every n minutes, classify it and then upload to database and (possibly) trigger the discount.
+*	REST API for Raspberry Pi to upload photos and classification. This API will have a functionality to apply discount if banana is classified as such, triggering an info sent to mobile app.
 
 ### Built With
 
