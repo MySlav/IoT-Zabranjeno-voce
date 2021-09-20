@@ -5,7 +5,7 @@
     <img src="https://i.ibb.co/zbZkRmt/android-chrome-512x512.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">IoT-Zabranjeno-vocee</h3>
+  <h3 align="center">IoT-Zabranjeno-voce</h3>
 
   <p align="center">
     Student project - "Internet of Things" course
@@ -21,6 +21,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#database-schema">Database Schema</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -39,8 +40,10 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+<p align="center">
+  <img src="https://i.ibb.co/yq5KQ0m/shema-Projekta.jpg" />
+</p>
 
-![project-schema](https://i.ibb.co/yq5KQ0m/shema-Projekta.jpg])
 
 In some stores, the price of an item depends on its expiry date. For example, if milk’s best before date expires tomorrow, some stores will be selling it at discounted price. The same goes for fruit. 
 Because fruit does not have expiry date, stores usually rely on visual judgment on fruit condition; if bananas have many brown spots, it is likely they are nearing the end of their sellable cycle so they are discounted manually by store personnel. 
@@ -59,6 +62,13 @@ The system will have the following components:
     *	Enable viewing of all taken photos and their classifications.
 *	Raspberry Pi with camera will take an image of a (single) banana every n minutes, classify it and then upload to database and (possibly) trigger the discount.
 *	REST API for Raspberry Pi to upload photos and classification. This API will have a functionality to apply discount if banana is classified as such, triggering an info sent to mobile app.
+
+
+### Database Schema
+<p align="center">
+  <img src="https://i.ibb.co/GTFYR81/db.jpg" />
+</p>
+
 
 ### Built With
 
