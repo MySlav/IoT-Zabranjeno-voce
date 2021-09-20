@@ -17,7 +17,7 @@ def create_app():
     app = Flask(__name__)
     app.config["DEBUG"] = True
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://mislav1:MojPass123456@iot-2021-mislavspajic-server.database.windows.net/iot-2021-mislavspajic-db2?driver=ODBC+Driver+17+for+SQL+Server"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://username:password@server/database_name?driver=ODBC+Driver+17+for+SQL+Server"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)

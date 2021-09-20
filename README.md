@@ -64,9 +64,10 @@ The system will have the following components:
 
 * [Flask](https://flask.palletsprojects.com)
 * [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com)
+* [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
 * [PyTorch](https://pytorch.org/)
 * [Bootstrap](https://getbootstrap.com)
-* [Microsoft Azure](https://azure.microsoft.com) - SQL server and VM(Oracle linux based)
+* [Microsoft Azure](https://azure.microsoft.com) - SQL server and VM (Oracle Linux based)
 * [Android Studio](https://developer.android.com/studio)
 
 
@@ -100,16 +101,19 @@ Note - You need to open port 5000 on your VM where the web app and Rest API are 
 
 How to start components.
 
-* Raspberry PI - only needed if you are not on raspbian distro
+* Raspberry PI
   ```sh
   python3 /raspi/PiCamera.py
   ```
   
 * Web app & Rest API
   ```sh
-  python /web_app_rest_api/app.py
+  export FLASK_APP="web_app_rest_api"
   ```
-
+  
+  ```sh
+  flask run -h "0.0.0.0"
+  ```
 <!-- CONTACT -->
 ## Contact
 
