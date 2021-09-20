@@ -6,6 +6,11 @@
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>{% block title %} {% endblock %}</title>
 </head>
+<style>
+.container {
+    max-width: 80%;
+}
+</style>
 <body>
 
 {% block body %} {% endblock %}

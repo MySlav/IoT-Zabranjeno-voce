@@ -24,8 +24,8 @@ img {
 <div class="container">
     <a href="/discounts" class="btn btn-info btn-lg">Discounts</a>
 	<a href="/observations" class="btn btn-info btn-lg ">Observations</a>
+	<a href="/logout" class="btn btn-warning btn-lg float-right">Logout</a>
   </div>
-</div>
 <div class="container">
 <p></p>
 </div>
@@ -56,7 +56,7 @@ img {
 					
 					<tr>
 						<th>ID</th>
-						<th>Ime</th>
+						<th>Name</th>
 						<th>Picture</th>
 						<th>Beacon UUID</th>
 						<th>Beacon Major</th>
@@ -70,7 +70,7 @@ img {
 					<tr>
 						<td>{{row.ID}}</td>
 						<td>{{row.Ime}}</td>
-						<td><img src="data:image/jpeg;base64,{{row.slika}}"></td>
+						<td style="width:250px"><img src="data:image/jpeg;base64,{{row.slika}}"></td>
 						<td style="width:320px">{{row.BeaconUUID}}</td>
 						<td>{{row.BeaconMajor}}</td>
 						<td>{{row.BeaconMinor}}</td>
@@ -83,7 +83,7 @@ img {
 						</td>
 					
 					</tr>
-					<!-- Modal Edit Employee-->
+					
 <div id="modaledit{{row.ID}}" class="modal fade" role="dialog">
    <div class="modal-dialog">
 
@@ -103,7 +103,7 @@ img {
          <div class="modal-body">
 
 
-            <form  enctype="multipart/form-data" action="{{url_for('update')}}" method="POST">
+            <form  enctype="multipart/form-data" action="{{url_for('main.update')}}" method="POST">
 
 
                <div class="form-group">
@@ -224,7 +224,7 @@ img {
          </div>
          <div class="modal-body">
 
-            <form enctype="multipart/form-data" action="{{url_for('add_voce')}}" method="POST">
+            <form enctype="multipart/form-data" action="{{url_for('main.add_voce')}}" method="POST">
 
 
                <div class="form-group">

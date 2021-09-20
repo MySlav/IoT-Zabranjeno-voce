@@ -11,6 +11,7 @@
 <div class="container">
     <a href="/" class="btn btn-info btn-lg">Fruits</a>
 	<a href="/discounts" class="btn btn-info btn-lg ">Discounts</a>
+	<a href="/logout" class="btn btn-warning btn-lg float-right">Logout</a>
   </div>
 </div>
 <div class="container">
@@ -47,6 +48,7 @@
 						<th>Image</th>
 						<th>Class - Model</th>
 						<th>Time</th>
+						<th>Action</th>
 					
 					</tr>
 					{% for row in opazaji %}
@@ -83,7 +85,7 @@
          <div class="modal-body">
 
 
-            <form  enctype="multipart/form-data" action="{{url_for('update_obs')}}" method="POST">
+            <form  enctype="multipart/form-data" action="{{url_for('main.update_obs')}}" method="POST">
 
 
                <div class="form-group">
@@ -176,7 +178,7 @@
          </div>
          <div class="modal-body">
 
-            <form enctype="multipart/form-data" action="{{url_for('add_opazaj')}}" method="POST">
+            <form enctype="multipart/form-data" action="{{url_for('main.add_opazaj')}}" method="POST">
 
 
                <div class="form-group">
